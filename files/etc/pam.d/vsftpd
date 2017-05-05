@@ -1,0 +1,4 @@
+#%PAM-1.0
+auth    required    pam_pwdfile.so   nodelay   pwdfile=/etc/vsftpd/passwd
+account required    pam_permit.so
+session required    pam_loginuid.so
