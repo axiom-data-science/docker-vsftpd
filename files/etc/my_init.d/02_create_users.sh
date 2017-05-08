@@ -18,5 +18,3 @@ chown -R ftp:ftp /ftp
 echo "Fixed permissions for all users"
 
 echo "FTP Users: ${FTP_USERS[@]}"
-
-exit 0

@@ -28,3 +28,18 @@ $ mkpasswd hi && mkpasswd bye
 GlYSFzEaoZovo
 4aS6bYB/ZU7Ao
 ```
+
+## Configuration
+
+For passive FTP connections to work you will need to set the `PASV_ADDRESS` env variable to the external IP of the host server. This will default to the private docker IP address `$(/sbin/ip route|awk '/default/ { print $3 }')`.
+
+You can see the min and max passive ports to use via `PASV_MIN_PORT` and `PASV_MAX_PORT`
+
+## Sample run
+
+```bash
+$ git clone https://github.com/axiom-data-science/docker-vsftpd.git
+$ docker build -t vsftpd .
+$ docker run --rm -it --env-file users.env -e PASV_ADDRESS=127.0.0.1 -p 1020-1021:20-21 -p 21000-21010:21000-21010 -v $(pwd)/srv:/ftp --name vsftpd vsftpd
+$ bash test.sh
+```
